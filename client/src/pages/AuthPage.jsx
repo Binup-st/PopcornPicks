@@ -102,7 +102,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-200">
+    <div className="flex justify-center items-center h-screen bg-gray-200 dark:text-gray-200 dark:bg-[rgb(16,23,42)]">
       <div className="relative flex justify-between gap-6 w-9/12 h-4/6 max-h-screen mb-20 bg-mintCream border-none shadow-2xl overflow-hidden">
         {/* Overlay Section */}
         <div

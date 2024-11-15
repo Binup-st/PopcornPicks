@@ -1,11 +1,15 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 import { LuPopcorn, LuSearch } from "react-icons/lu";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 export default function Header() {
   const path = useLocation();
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state.theme);
   return (
     <Navbar className="border-b-2">
       <Link to="/" className="flex whitespace-nowrap self-center">
@@ -22,9 +26,17 @@ export default function Header() {
           className="hidden sm:inline"
         />
       </form>
+      <Button className="w-9 h-9 sm:hidden flex self-center" pill>
+        <LuSearch color="red" />
+      </Button>
       <div className="flex gap-2 md:order-2">
-        <Button className="w-9 h-9 sm:hidden flex self-center" pill>
-          <LuSearch color="red" />
+        <Button
+          className="w-12 h-12 hidden sm:inline mr-2"
+          color="gray"
+          pill
+          onClick={()=>dispatch(toggleTheme())}
+        >
+          {theme === "dark" ? <FaSun /> : <FaMoon />}
         </Button>
         {currentUser ? (
           <Dropdown
@@ -38,7 +50,7 @@ export default function Header() {
               <span className="block text-sm">@{currentUser.username}</span>
               <span className="block text-sm font-medium truncate">
                 @{currentUser.email}
-              </span> 
+              </span>
             </Dropdown.Header>
             <Link to={"/dashboard"}>
               <Dropdown.Item>Profile</Dropdown.Item>
