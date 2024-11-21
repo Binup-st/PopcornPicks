@@ -209,7 +209,7 @@ export default function Signup() {
                     <span className="pl-3">Loading</span>
                   </div>
                   :
-                  "Sign In"}
+                  "Sign Up"}
                 </Button>
                 <OAuth />
                 </form>
