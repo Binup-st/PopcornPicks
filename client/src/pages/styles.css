@@ -1,0 +1,8 @@
+
+.custom-card > div:first-child {
+    padding: 0 !important; /* Override the p-6 */
+  }
+
+  .backred{
+    background-color: red;
+  }

@@ -2,7 +2,6 @@ import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
-import { signInFailure } from "../../client/src/redux/user/userSlice.js";
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -37,31 +36,30 @@ export const signup = async (req, res, next) => {
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
 
-  if (email === "" || password === "" || !email || !password) {
+  if (!email || !password || email === "" || password === "") {
     return next(errorHandler(400, "All fields are required"));
   }
 
   try {
     const validUser = await User.findOne({ email });
-
     if (!validUser) {
-      return next(errorHandler(404, "User not found"));
+      return next(errorHandler(404, "User not Found"));
     }
 
-    const validPassword = bcryptjs.compareSync(password, validUser.password);
-
+    const validPassword = bcryptjs.compareSync(password, validUser.password); //compares hashpassword
     if (!validPassword) {
       return next(errorHandler(400, "Invalid Password"));
     }
 
+    //Authentication
     const token = jwt.sign(
       {
         id: validUser._id,
       },
-      process.env.JWT_SECRET
+      process.env.JWT_SECRET //,{expiresIn: '1d}
     );
 
-    const { password: pass, ...rest } = validUser._doc;
+    const { password: pass, ...rest } = validUser._doc; //doesn't send password
 
     res
       .status(200)
@@ -71,7 +69,6 @@ export const signin = async (req, res, next) => {
       .json(rest);
   } catch (err) {
     next(err);
-    console.log(err);
   }
 };
 
@@ -100,7 +97,9 @@ export const googleAuth = async (req, res, next) => {
         Math.random().toString(36).slice(-8);
       const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
       const newUser = new User({
-        username: name.toLowerCase().split(" ").join("") + Math.random().toString(36).slice(-4),
+        username:
+          name.toLowerCase().split(" ").join("") +
+          Math.random().toString(36).slice(-4),
         email,
         password: hashedPassword,
         profilePicture: googlePhotoUrl,

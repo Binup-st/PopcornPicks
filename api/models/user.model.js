@@ -20,7 +20,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small_2x/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg",
 
-    }
+    },
+    watchlist: [
+      {
+        movieId: String,
+        movieTitle: String,
+        addedAt : {type : Date, default: Date.now },
+      }
+    ]
   },
   { timestamp: true }
 );

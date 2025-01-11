@@ -3,11 +3,11 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import AuthPage from './pages/AuthPage'
 import Header from './components/Header'
-import Genre from './pages/Genre'
 import Popular from './pages/Popular'
-import Latest from './pages/Latest'
 import Dashboard from './pages/Dashboard'
 import PrivateRoute from './components/PrivateRoute'
+import Upcoming from './pages/Upcoming'
+import MyWatchlist from './pages/MyWatchlist'
 
 export default function App() {
   return (
@@ -16,9 +16,9 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/authpage' element={<AuthPage />}/>
-        <Route path='/genre' element={<Genre />}/>
+        <Route path='/mywatchlist' element={<MyWatchlist />}/>
         <Route path='/popular' element={<Popular />}/>
-        <Route path='/latest' element={<Latest />}/>
+        <Route path='/upcoming' element={<Upcoming />}/>
         <Route element={<PrivateRoute />}>
         <Route path='/dashboard' element={<Dashboard />} />
         </Route>

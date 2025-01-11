@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "flowbite-react";
 import "./styles.css";
-import { fetchMovieDetails, fetchMoviesId } from "../components/MovieProvider";
+import {
+  fetchMovieDetails,
+  fetchMoviesId,
+} from "../components/MovieProvider";
+import { addToWatchList } from "../components/AddToWatchList";
 
-export default function Popular() {
+export default function Upcoming() {
   const [moviesId, setMoviesId] = useState([]);
   const [movieDetails, setMovieDetails] = useState([]);
   const [watchlistIds, setWatchlistIds] = useState([]);
+
 
   useEffect(() => {
     try {
@@ -40,7 +45,7 @@ export default function Popular() {
   },[]);
 
   useEffect(() => {
-    const url = "https://api.themoviedb.org/3/movie/popular";
+    const url = "https://api.themoviedb.org/3/movie/upcoming";
 
     const fetchMovies = async () => {
       try {
@@ -98,8 +103,8 @@ export default function Popular() {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-4xl font-bold mt-4">Popular Movies</h1>
-      <p className="text-gray-400">TV shows and movies recently popular.</p>
+      <h1 className="text-4xl font-bold mt-4">Upcoming Movies</h1>
+      <p className="text-gray-400">TV shows and movies that are releasing soon.</p>
       <div className="mt-5 flex flex-wrap justify-center">
         {movieDetails && movieDetails.length > 0 ? (
           movieDetails.map((movieDetail) => (
@@ -112,6 +117,7 @@ export default function Popular() {
                   <h2 className="text-xl font-semibold tracking-tight leading-5 text-gray-900 dark:text-white text-center mb-2">
                     {movieDetail.title}
                   </h2>
+
                   {watchlistIds.includes(movieDetail.id)? 
                     <Button onClick={() => handleWatchlistClick(movieDetail)} color="success">
                       Added To Watchlist
