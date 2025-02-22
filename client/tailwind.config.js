@@ -11,7 +11,9 @@ export default {
         customBlue: "#4ecdc4",
         midnightGreen: "#4ecdc4",
       },
-      
+      fontFamily: {
+        sans: ["Poppins", 'sans-serif'],
+      },
     },
   },
   plugins: [flowbite.plugin()],

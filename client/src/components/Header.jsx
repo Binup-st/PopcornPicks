@@ -1,5 +1,5 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import { LuPopcorn, LuSearch } from "react-icons/lu";
+import { LuPopcorn } from "react-icons/lu";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,17 +40,6 @@ export default function Header() {
           PICKS
         </span>
       </Link>
-      <form>
-        <TextInput
-          type="text"
-          placeholder="Search..."
-          rightIcon={LuSearch}
-          className="hidden sm:inline"
-        />
-      </form>
-      <Button className="w-9 h-9 sm:hidden flex self-center" pill>
-        <LuSearch color="red" />
-      </Button>
       <div className="flex gap-2 md:order-2">
         <Button
           className="w-12 h-12 hidden sm:inline mr-2"

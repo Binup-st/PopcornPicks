@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./styles.css";
 import { Alert, Button, Spinner, TextInput } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -88,7 +89,7 @@ export default function Signup() {
       }
 
       const data = await res.json();
-      console.log(data)
+      console.log(data);
 
       if (data.success === false) {
         return dispatch(signInFailure(data.message));
@@ -105,16 +106,10 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-200 dark:text-gray-300 dark:bg-[rgb(24,30,48)]">
-      <div className="relative flex justify-between gap-6 w-9/12 h-4/6 max-h-screen mb-20 bg-mintCream dark:bg-gray-300 border-none shadow-2xl overflow-hidden">
+    <div className="flex justify-center items-center h-[900px] lg:h-screen dark:text-gray-300 dark:bg-[rgb(24,30,48)]">
+      <div className="relative flex flex-col lg:flex-row gap-6 w-9/12 h-4/6 max-h-screen mb-20 bg-mintCream dark:bg-gray-300 border-none shadow-2xl overflow-hidden">
         {/* Overlay Section */}
-        <div
-          className={`absolute inset-y-0 left-0 flex flex-col justify-center items-center bg-customRed w-1/2 transition-transform duration-700 ease-in-out ${
-            isSignUp
-              ? "translate-x-0 rounded-r-full"
-              : "translate-x-full rounded-l-full"
-          }`}
-        >
+        <div className={`one-container ${isSignUp? 'sign-up' : 'sign-in'}`}>
           <h1 className="text-4xl font-bold text-center text-white dark:text-gray-200">
             {isSignUp ? "Welcome Back!" : "Hello, Friend!"}
           </h1>
@@ -135,8 +130,8 @@ export default function Signup() {
 
         {/* Forms Container */}
         <div
-          className={`absolute inset-y-0 right-0 transition-transform duration-700 ease-in-out ${
-            isSignUp ? "translate-x-0" : "-translate-x-full"
+          className={`two-container ${
+            isSignUp ? "sign-up" : "sign-in"
           } flex w-1/2`}
         >
           {!isSignUp && (
@@ -185,7 +180,9 @@ export default function Signup() {
           {isSignUp && (
             <div className="flex flex-col justify-center items-center w-full">
               <div className="flex flex-col items-center">
-                <h1 className="text-4xl font-bold mb-2 dark:text-gray-950">Create Account</h1>
+                <h1 className="text-4xl font-bold mb-2 dark:text-gray-950">
+                  Create Account
+                </h1>
                 <form
                   className="my-6 flex flex-col gap-3 w-80"
                   onSubmit={handleSignUpSubmit}

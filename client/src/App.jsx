@@ -1,4 +1,3 @@
-import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import AuthPage from './pages/AuthPage'
@@ -8,6 +7,8 @@ import Dashboard from './pages/Dashboard'
 import PrivateRoute from './components/PrivateRoute'
 import Upcoming from './pages/Upcoming'
 import MyWatchlist from './pages/MyWatchlist'
+import Footer from './components/Footer'
+import MovieDetail from './pages/MovieDetail'
 
 export default function App() {
   return (
@@ -21,8 +22,10 @@ export default function App() {
         <Route path='/upcoming' element={<Upcoming />}/>
         <Route element={<PrivateRoute />}>
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/movie' element={<MovieDetail />} />
         </Route>
       </Routes>
+      <Footer/>
     </BrowserRouter>
   )
 }

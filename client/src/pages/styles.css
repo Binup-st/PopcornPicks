@@ -1,8 +1,84 @@
-
-.custom-card > div:first-child {
-    padding: 0 !important; /* Override the p-6 */
+.one-container {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    transition: transform 0.7s ease-in-out;
+    background-color: #ff6b6b;
   }
-
-  .backred{
-    background-color: red;
+  
+  .one-container.sign-up {
+    transform: translateX(0);
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
   }
+  
+  .one-container.sign-in {
+    transform: translateX(100%);
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+  }
+  
+  @media screen and (max-width: 1024px) {
+      .one-container {
+          position: static !important;
+          flex-direction: column !important;
+          width: 100%;
+          height: 40%;
+          transform: none !important;
+          transition: none !important;
+      }
+  
+      .one-container.sign-up {
+          border-bottom-right-radius: 50%;
+          border-bottom-left-radius: 50%;
+          border-top-right-radius: 0 !important;
+      }
+  
+      .one-container.sign-in {
+          border-bottom-left-radius: 50%;
+          border-bottom-right-radius: 50%;
+         border-top-left-radius: 0;
+      }
+  }
+  
+  /* 🔹 Two Container */
+  .two-container {
+      position: absolute;
+      inset-block: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      transition: transform 0.7s ease-in-out;
+  }
+  
+  .two-container.sign-up {
+      transform: translateX(0);
+  }
+  
+  .two-container.sign-in {
+      transform: translateX(-100%);
+  }
+  
+  @media screen and (max-width: 1024px) {
+      .two-container {
+          position: static !important;
+          flex-direction: column !important;
+          width: 100%;
+          height: 60%;
+          transform: none !important;
+          transition: none !important;
+      }
+  
+      .two-container.sign-in {
+          transform: translateY(-100%);
+      }
+  }
+  
