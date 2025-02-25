@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 export default function MyWatchlist() {
   const [movieDetails, setMovieDetails] = useState([]);
   const [watchlistIds, setWatchlistIds] = useState([]);
-  const [unauthorized, setUnauthorized] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -31,7 +30,6 @@ export default function MyWatchlist() {
         setWatchlistIds(ids);
       } catch (err) {
         setError(err.message);
-        if (err.status) setUnauthorized(true);
         console.error(err.message);
       }
     };
@@ -87,7 +85,6 @@ export default function MyWatchlist() {
   if (error)
     return (
       <div className="flex flex-col justify-center items-center h-[500px]">
-        <h1 className="text-3xl font-semibold">Sign In to get Access To My Watchlist</h1>
         <Button
           className="bg-red-500 hover:bg-customRed mt-6"
           onClick={() => navigate("/authpage")}
